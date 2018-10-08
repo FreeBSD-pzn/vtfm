@@ -1,0 +1,44 @@
+;
+; This is the ALPHA (previously called "EVAX") version of ARCH_DEFS.MAR,
+; which contains architectural definitions for compiling VMS sources
+; for VAX, ALPHA and IA64 systems.
+;
+;	Note: VAX, VAXPAGE  and IA64 should be left undefined, 
+;	      a lot of code checks for whether a symbol is
+;	      defined (e.g. .IF DF VAX) vs. whether the value
+;	      is of a expected value (e.g. .IF NE VAX).
+;
+;VAX     = 0   
+EVAX     = 1
+ALPHA    = 1
+;IA64    = 0
+;
+;VAXPAGE = 0
+BIGPAGE  = 1
+;
+AXTOOLS  = 0
+IXTOOLS  = 0
+;
+IXVMS    = 0
+AXVMS    = 0
+;
+ADDRESSBITS = 32
+;
+
+	.TITLE	Table definitions for fspec parse
+
+$TPADEF
+$INIT_STATE	FSPEC_ST_TBL, FSPEC_KW_TBL
+
+$STATE	FSPEC_BEG
+$TRAN	TPA$_FILESPEC,	FSPEC_END
+$TRAN	TPA$_STRING,	TPA$_FAIL
+$TRAN	TPA$_EOS,	TPA$_FAIL
+
+$STATE	FSPEC_END
+$TRAN	TPA$_STRING,	TPA$_FAIL
+$TRAN	TPA$_EOS,	TPA$_EXIT
+
+$END_STATE
+
+	.END

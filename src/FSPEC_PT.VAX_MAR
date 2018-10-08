@@ -1,0 +1,30 @@
+; MODIFIED BY:
+;
+;	X-1	ACG0574		Andy Goldstein		2-Dec-1991
+;		Copy from EVMS build
+;
+; This is the VAX version of ARCH_DEFS.MAR, which contains
+; architectural definitions for compiling VMS sources for
+; VAX systems.
+;
+VAX = 1
+VAXPAGE = 1
+ADDRESSBITS = 32
+
+	.TITLE	Table definitions for fspec parse
+
+$TPADEF
+$INIT_STATE	FSPEC_ST_TBL, FSPEC_KW_TBL
+
+$STATE	FSPEC_BEG
+$TRAN	TPA$_FILESPEC,	FSPEC_END
+$TRAN	TPA$_STRING,	TPA$_FAIL
+$TRAN	TPA$_EOS,	TPA$_FAIL
+
+$STATE	FSPEC_END
+$TRAN	TPA$_STRING,	TPA$_FAIL
+$TRAN	TPA$_EOS,	TPA$_EXIT
+
+$END_STATE
+
+	.END

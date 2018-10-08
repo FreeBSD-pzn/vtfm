@@ -1,0 +1,49 @@
+;
+; This is the IA64 version of ARCH_DEFS.MAR.  It contains architectural 
+; definitions for compiling VMS sources for VAX, ALPHA and IA64 systems.
+;
+;	Note: VAX, VAXPAGE, EVAX and ALPHA should be left undefined, 
+;	      a lot of code checks for whether a symbol is
+;	      defined (e.g. .IF DF VAX) vs. whether the value
+;	      is of a expected value (e.g. .IF NE VAX).
+;
+;VAX     = 0   
+;EVAX    = 0
+;ALPHA   = 0
+IA64     = 1
+;
+;VAXPAGE = 0
+BIGPAGE  = 1
+;
+AXTOOLS  = 0
+IXTOOLS  = 0
+;
+IXVMS    = 0
+AXVMS    = 0
+;
+ADDRESSBITS = 32
+;
+; Inlcude linkages necessary to call JSB routines or CALL routines with
+; non-standard linkages written in languages other than iMacor.
+;
+	$IA64_LINKAGES
+;
+; End of ARCH_DEFS
+
+	.TITLE	Table definitions for fspec parse
+
+$TPADEF
+$INIT_STATE	FSPEC_ST_TBL, FSPEC_KW_TBL
+
+$STATE	FSPEC_BEG
+$TRAN	TPA$_FILESPEC,	FSPEC_END
+$TRAN	TPA$_STRING,	TPA$_FAIL
+$TRAN	TPA$_EOS,	TPA$_FAIL
+
+$STATE	FSPEC_END
+$TRAN	TPA$_STRING,	TPA$_FAIL
+$TRAN	TPA$_EOS,	TPA$_EXIT
+
+$END_STATE
+
+	.END
