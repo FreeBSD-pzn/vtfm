@@ -12,5 +12,5 @@ To compile VTFM simple run:
 $ @MAKEFILE
 
 p.s.
-I have keeped VTFM, which I have found in the DECus archives:
+I have kept VTFM, which I have found in the DECus archives:
 https://www.digiater.nl/openvms/decus/
